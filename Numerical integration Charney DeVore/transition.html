@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+   <head>
+        <title>Charney-DeVore Model</title>
+      <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
+   </head>
+
+   <body>
+      <h1>Vergleich: numerische Integration (Arrakawa finite differencing scheme) und analytische Näherung.</h3>
+      <img id = "above" src = "./above_resonance_v7_psia0p2.png" position=relative width = 800px margin = 0>
+      <img id= "below" src = "./below_resonance_v7_psia0p2.png" position = absolute left = 0 width =800px>
+      <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            function loop_above() {
+            d3.select("#above")
+                .attr("src","./above_resonance_v7_psia0p2.png")
+                .transition()
+                //.style("opacity", 0.5)
+                //.delay(2000)
+                .duration(2000)
+                .attr("src","./above_resonance_both.png")
+                //.delay(2000)
+                .transition()
+                .duration(2000)
+                .attr("src","./above_resonance_v7_psia0p2.png")
+                .on("end", loop_above);
+            };
+
+            function loop_below() {
+            d3.select("#below").transition()
+                .attr("src", "./below_resonance_v7_psia0p2.png")
+                .transition()
+                .duration(2000)
+                .attr("src", "./below_resonance_both.png")
+                .transition()
+                .duration(2000)
+                .attr("src", "./below_resonance_v7_psia0p2.png")
+                .on("end", loop_below)
+            };
+
+            loop_above();
+            loop_below();
+        });
+      </script>
+   </body>
+</html>
